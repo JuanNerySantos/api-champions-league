@@ -243,14 +243,12 @@ const dataBase: PlayerModel[] = [
   },
 ];
 
-export const findAllPlayers = async (): Promise<PlayerModel[]> => {
+export const findAllPlayersRepository = async (): Promise<PlayerModel[]> => {
   return dataBase;
 };
 
-export const findPlayerById = async (
+export const findPlayerByIdRepository = async (
   id: number
 ): Promise<PlayerModel | undefined> => {
-  return dataBase.find((player) => {
-    player.id === id;
-  });
+  return dataBase.find((player) => player.id === id);
 };

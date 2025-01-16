@@ -28,3 +28,12 @@ export const badRequest = async (): Promise<HttpResponse> => {
     },
   };
 };
+
+export const notFound = async (): Promise<HttpResponse> => {
+  return {
+    statusCode: 404,
+    body: {
+      message: "Player not found !",
+    },
+  };
+};

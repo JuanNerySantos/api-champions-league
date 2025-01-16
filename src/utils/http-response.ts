@@ -6,9 +6,25 @@ export const ok = async (data: any): Promise<HttpResponse> => {
   };
 };
 
+export const create = async (data: any): Promise<HttpResponse> => {
+  return {
+    statusCode: 201,
+    body: data,
+  };
+};
+
 export const noContent = async (): Promise<HttpResponse> => {
   return {
     statusCode: 204,
-    body: "Data not found.",
+    body: { message: "Data not found." },
+  };
+};
+
+export const badRequest = async (): Promise<HttpResponse> => {
+  return {
+    statusCode: 400,
+    body: {
+      message: "Bar request",
+    },
   };
 };

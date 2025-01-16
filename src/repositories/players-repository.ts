@@ -252,3 +252,10 @@ export const findPlayerByIdRepository = async (
 ): Promise<PlayerModel | undefined> => {
   return dataBase.find((player) => player.id === id);
 };
+
+export const createPlayerRepository = async (data: PlayerModel) => {
+  dataBase.push(data);
+  return {
+    data,
+  };
+};

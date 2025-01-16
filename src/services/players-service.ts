@@ -1,10 +1,17 @@
 import { PlayerModel } from "../models/player-model";
 import {
   createPlayerRepository,
+  DeletePlayerByIdRepository,
   findAllPlayersRepository,
   findPlayerByIdRepository,
 } from "../repositories/players-repository";
-import { badRequest, create, noContent, ok } from "../utils/http-response";
+import {
+  badRequest,
+  create,
+  noContent,
+  notFound,
+  ok,
+} from "../utils/http-response";
 
 export const getPlayerService = async () => {
   const data = await findAllPlayersRepository();
@@ -38,4 +45,18 @@ export const createPlayerService = async (data: PlayerModel) => {
   }
 
   return create(createPlayer);
+};
+
+export const DeletePlayerByIdService = async (id: number) => {
+  if (!id) {
+    return badRequest();
+  }
+
+  const deletedPlayer = await DeletePlayerByIdRepository(id);
+
+  if (!deletedPlayer) {
+    return notFound();
+  }
+
+  return ok(deletedPlayer);
 };

@@ -259,3 +259,11 @@ export const createPlayerRepository = async (data: PlayerModel) => {
     data,
   };
 };
+
+export const DeletePlayerByIdRepository = async (id: number) => {
+  const index = dataBase.findIndex((player) => player.id === id);
+
+  if (index !== -1) {
+    return dataBase.splice(index, 1);
+  }
+};

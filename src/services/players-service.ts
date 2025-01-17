@@ -1,3 +1,4 @@
+import { UpdatePlayerModel } from "../models/params-update-player";
 import { PlayerModel } from "../models/player-model";
 import {
   createPlayerRepository,
@@ -24,10 +25,10 @@ export const getPlayerService = async () => {
 };
 
 export const getPlayerByIdService = async (id: number) => {
-  const data = await findPlayerByIdRepository(id);
+  const player = await findPlayerByIdRepository(id);
 
-  if (!data) {
-    return noContent();
+  if (!player) {
+    return notFound();
   }
 
   return ok(data);
@@ -59,4 +60,23 @@ export const DeletePlayerByIdService = async (id: number) => {
   }
 
   return ok(deletedPlayer);
+};
+
+export const UpdatePlayerService = async (
+  id: number,
+  updateParams: UpdatePlayerModel
+) => {
+  if (!updateParams) {
+    return badRequest();
+  }
+
+  const player = await findPlayerByIdRepository(id);
+
+  if (!player) {
+    return notFound();
+  }
+
+  const updatePlayer = await UpdatePlayerRepository(id, updateParams);
+
+  return updatePlayer;
 };

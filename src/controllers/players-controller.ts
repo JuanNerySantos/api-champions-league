@@ -1,9 +1,11 @@
 import { Request, Response } from "express";
+import { UpdatePlayerModel } from "../models/params-update-player";
 import {
   createPlayerService,
   DeletePlayerByIdService,
   getPlayerByIdService,
   getPlayerService,
+  UpdatePlayerService,
 } from "../services/players-service";
 
 export const getPlayers = async (req: Request, res: Response) => {
@@ -39,7 +41,7 @@ export const DeletePlayerById = async (req: Request, res: Response) => {
 export const UpdatePlayer = async (req: Request, res: Response) => {
   const id = parseInt(req.params.id);
 
-  const updateParams = req.body;
+  const updateParams: UpdatePlayerModel = req.body;
 
   const httpResponse = await UpdatePlayerService(id, updateParams);
 

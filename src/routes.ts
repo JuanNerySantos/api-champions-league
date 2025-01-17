@@ -12,5 +12,6 @@ router.get("/players", getPlayers);
 router.get("/players/:id", getPlayerById);
 router.post("/players/", createPlayer);
 router.delete("/players/:id", DeletePlayerById);
+router.patch("/players/:id", UpdatePlayer);
 
 export default router;

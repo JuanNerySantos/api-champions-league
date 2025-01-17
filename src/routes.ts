@@ -4,6 +4,7 @@ import {
   DeletePlayerById,
   getPlayerById,
   getPlayers,
+  UpdatePlayer,
 } from "./controllers/players-controller";
 
 const router = Router();

@@ -5,6 +5,7 @@ import {
   DeletePlayerByIdRepository,
   findAllPlayersRepository,
   findPlayerByIdRepository,
+  UpdatePlayerRepository,
 } from "../repositories/players-repository";
 import {
   badRequest,
@@ -31,7 +32,7 @@ export const getPlayerByIdService = async (id: number) => {
     return notFound();
   }
 
-  return ok(data);
+  return ok(player);
 };
 
 export const createPlayerService = async (data: PlayerModel) => {
@@ -66,17 +67,18 @@ export const UpdatePlayerService = async (
   id: number,
   updateParams: UpdatePlayerModel
 ) => {
-  if (!updateParams) {
+  if (Object.keys(updateParams).length === 0) {
     return badRequest();
   }
 
   const player = await findPlayerByIdRepository(id);
 
   if (!player) {
+    console.log("error");
     return notFound();
   }
 
   const updatePlayer = await UpdatePlayerRepository(id, updateParams);
 
-  return updatePlayer;
+  return ok(updatePlayer);
 };

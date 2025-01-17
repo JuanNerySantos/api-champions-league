@@ -1,3 +1,4 @@
+import { UpdatePlayerModel } from "../models/params-update-player";
 import { PlayerModel } from "../models/player-model";
 
 const dataBase: PlayerModel[] = [
@@ -265,5 +266,19 @@ export const DeletePlayerByIdRepository = async (id: number) => {
 
   if (index !== -1) {
     return dataBase.splice(index, 1);
+  }
+};
+
+export const UpdatePlayerRepository = async (
+  id: number,
+  updateParams: UpdatePlayerModel
+) => {
+  const indexPlayer = dataBase.findIndex((player) => player.id === id);
+
+  if (indexPlayer !== -1) {
+    return (dataBase[indexPlayer] = {
+      ...dataBase[indexPlayer],
+      ...updateParams,
+    });
   }
 };

@@ -1,4 +1,5 @@
 import { Router } from "express";
+import { getClub } from "./controllers/clubs-controller";
 import {
   createPlayer,
   DeletePlayerById,
@@ -15,6 +16,6 @@ router.post("/players/", createPlayer);
 router.delete("/players/:id", DeletePlayerById);
 router.patch("/players/:id", UpdatePlayer);
 
-router.get("/clubs", getclub);
+router.get("/clubs", getClub);
 
 export default router;

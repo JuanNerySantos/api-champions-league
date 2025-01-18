@@ -15,4 +15,6 @@ router.post("/players/", createPlayer);
 router.delete("/players/:id", DeletePlayerById);
 router.patch("/players/:id", UpdatePlayer);
 
+router.get("/clubs", getclub);
+
 export default router;

@@ -1,16 +1,8 @@
 import { getClubRepository } from "../repositories/club-repository";
-import { badRequest, notFound } from "../utils/http-response";
+import { ok } from "../utils/http-response";
 
-export const getClubService = async (id: number) => {
-  if (Object.keys(id).length === 0) {
-    return badRequest();
-  }
+export const getClubService = async () => {
+  const club = await getClubRepository();
 
-  const club = await getClubRepository(id);
-
-  if (!club) {
-    return notFound();
-  }
-
-  return club;
+  return ok(club);
 };
